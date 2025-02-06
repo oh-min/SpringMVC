@@ -1,5 +1,9 @@
 package com.ohm.springmvc_pratice.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
 public class HttpMethodController {
 //    HTTP 메소드란?
 //    클라이언트 - 서버 구조에서 요청(request)과 응답(response)이 이루어지는 방식
@@ -10,5 +14,35 @@ public class HttpMethodController {
 
 //    종류
 //    GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS, CONNECT
+
+    @GetMapping("/api/get")
+    @ResponseBody
+    public String get() {
+        return "GET Method 요청";
+    }
+
+    @PostMapping("/api/post")
+    @ResponseBody
+    public String post() {
+        return "POST Method 요청";
+    }
+
+    @PutMapping("/api/put")
+    @ResponseBody
+    public String put() {
+        return "PUT Method 요청";
+    }
+
+    @DeleteMapping("/api/delete")
+    @ResponseBody
+    public String delete() {
+        return "DELETE Method 요청";
+    }
+
+    @PatchMapping("/api/patch")
+    @ResponseBody
+    public String patch() {
+        return "PATCH Method 요청";
+    }
 
 }
