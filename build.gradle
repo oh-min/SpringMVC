@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+//	thymleaf는 동적페이지 처리를 위한 템플릿 엔진이므로 정적페이지 동작 확인을 위해 주석 처리
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
