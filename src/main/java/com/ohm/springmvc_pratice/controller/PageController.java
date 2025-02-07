@@ -1,8 +1,8 @@
 package com.ohm.springmvc_pratice.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PageController {
@@ -38,5 +38,18 @@ public class PageController {
     @GetMapping("/html/templates")
     public String htmlTemplates() {
         return "staticPage4"; // .html 은 생략가능
+    }
+
+    // < 동적 페이지 >
+    private static int visitCount = 0; // 클래스 변수 선언
+
+    @GetMapping("/html/dynamic")
+    // Model 객체를 사용 -> DB 작업 후 처리한 데이터 Model에 저장 -> 컨트롤러에서 뷰로 데이터 전달
+    public String dynamicPage(Model model) {
+        visitCount++; // 페이지가 요청될 때마다 visitCount 변수 +1
+        model.addAttribute("visits",visitCount);
+        // addAttribute(String name, Object value) : model에 데이터를 추가하는 메서드
+        // name : HTML에서 참조할 수 있느 이름 / value : 그 값
+        return "dynamicPage.html";
     }
 }
