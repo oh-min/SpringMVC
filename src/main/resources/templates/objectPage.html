@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3> 1. @ModelAttribute 방식 </h3>
+<h3> URI : POST /http-object/post/model</h3>
+<form method="POST" action="/http-object/post/model">
+    <div>
+        이름 : <input name="name" type="text">
+    </div>
+    <div>
+        나이 : <input name="age" type="text">
+    </div>
+    <button>전송</button>
+</form>
+<br><br>
+<h3> 2. @ModelAttribute 를 사용한 Query String 방식 </h3>
+<h3> URI : GET /http-object/get/model</h3>
+<form method="GET" action="/http-object/get/model">
+    <div>
+        이름 : <input name="name" type="text">
+    </div>
+    <div>
+        나이 : <input name="age" type="text">
+    </div>
+    <button>전송</button>
+</form>
+<br><br>
+<h3> 3. @RequestBody 방식 </h3>
+<h3> URI : POST /http-object/post/json</h3>
+<form id="jsonForm">
+    <div>
+        이름 : <input name="name" type="text">
+    </div>
+    <div>
+        나이 : <input name="age" type="text">
+    </div>
+</form>
+<button id="jsonSend">전송</button>
+<div>
+    <div id="jsonResult"></div>
+</div>
+</body>
+<script>
+    // POST /http-object/post/json
+    const helloJson = document.querySelector("#jsonSend")
+    helloJson.onclick = async (e) => {
+        const form = document.querySelector("#jsonForm");
+        const data = {
+            name: form.querySelector('input[name="name"]').value,
+            age: form.querySelector('input[name="age"]').value
+        }
+        const response = await fetch('/http-object/post/json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        const text = await response.text();// read response body as text
+        console.log(text)
+        document.querySelector("#jsonResult").innerHTML = text;
+    };
+</script>
+</html>
