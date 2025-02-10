@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3> 1. @Path Variable 방식 </h3>
+<h3> URI : GET /http-parameter/player/{name}/age/{age}</h3>
+<form id="firstForm">
+    <div>
+        이름 : <input name="name" type="text">
+    </div>
+    <div>
+        나이 : <input name="age" type="text">
+    </div>
+</form>
+<div>
+    <button id="firstFormBtn">전송</button>
+</div>
+<br><br>
+<h3> 2. @Request Param 방식 </h3>
+<h3> URI : GET /http-parameter/get/request-param</h3>
+<form method="GET" action="/http-parameter/get/request-param">
+    <div>
+        이름 : <input name="name" type="text">
+    </div>
+    <div>
+        나이 : <input name="age" type="text">
+    </div>
+    <button>전송</button>
+</form>
+<br><br>
+<h3> 2-1. @Request Param 의 required = false 옵션 </h3>
+<h3> URI : GET /http-parameter/get/request-param/required</h3>
+<form method="GET" action="/http-parameter/get/request-param/required">
+    <div>
+        이름 : <input name="name" type="text">
+    </div>
+    <div>
+        나이 : <input name="age" type="text">
+    </div>
+    <button>전송</button>
+</form>
+<br><br>
+<h3> 3. @Request Param POST 방식 </h3>
+<h3> URI : POST /uri/post/request-param</h3>
+<form method="POST" action="/http-parameter/post/request-param">
+    <div>
+        이름 : <input name="name" type="text">
+    </div>
+    <div>
+        나이 : <input name="age" type="text">
+    </div>
+    <button>전송</button>
+</form>
+<br><br>
+
+</body>
+<script>
+    // GET /player/{name}/age/{age}
+    const firstFormBtn = document.querySelector("#firstFormBtn")
+    firstFormBtn.onclick = (e) => {
+        const form = document.querySelector("#firstForm");
+        const name = form.querySelector('input[name="name"]').value;
+        const age = form.querySelector('input[name="age"]').value;
+        const relativeUrl = `/http-parameter/player/${name}/age/${age}`;
+        window.location.href = relativeUrl;
+    }
+</script>
+</html>
